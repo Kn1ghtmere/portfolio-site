@@ -1,9 +1,11 @@
-
+import Home from "../src/components/Home"
+import Navbar from "./components/Navbar"
 
 function App() {
   return (
     <>
-    <div className="text-4xl"> hey</div>
+    <Navbar/>
+    <Home />
     </>
   )
 }
