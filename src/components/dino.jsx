@@ -28,14 +28,15 @@ useEffect(() => {
 return (
     <div
     ref={ref}
-    className="fixed top-0 left-0 z-50 pointer-events-none will-change-transform"
+    className="fixed top-0 left-0 z-50 cursor-grab active:cursor-grabbing will-change-transform"
     style={{ transformOrigin: "top left" }}
 >
     <img
         ref={imgRef}
         src={SPRITES[theme][0]}
         alt="Dino"
-        className="w-20 h-auto pixel-art"
+        className="w-20 h-auto pixel-art select-none"
+        style = {{WebkitUserDrag: "none", touchAction: "none"}}
     />
 </div>
 );

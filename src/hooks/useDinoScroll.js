@@ -1,12 +1,14 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Draggable } from 'gsap/Draggable';
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, Draggable);
 
 const RUN_FRACTION = 0.02;
 const SETTLE_END_FRACTION = 0.13;
 const STEP_PX = 45;
+const DRAG_MULTIPLIER = 3.1;
 
 export function useDinoScroll({ containerRef, trackRef, dinoRef, frameSetterRef }) {
     useGSAP(() => {
@@ -16,6 +18,12 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, frameSetterRef 
         if (!container || !track || !dino) return;
 
         let st;
+        let draggable;
+
+        const dragProxy = document.createElement("div");
+        dragProxy.style.cssText = 
+        "position:fixed; top:0; left:0; width:1px; height:1px; pointer-events:none;";
+        document.body.appendChild(dragProxy);
 
         const build = () => {
             const totalScroll = track.scrollWidth - window.innerWidth;
@@ -36,7 +44,7 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, frameSetterRef 
                 start: "top top",
                 end: () => `+=${totalScroll}`,
                 pin: true,
-                scrub: true,
+                scrub: 1,
                 onUpdate: (self) => {
                     const p = self.progress;
                     const settle = gsap.utils.clamp(
@@ -58,6 +66,17 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, frameSetterRef 
                  frameSetterRef.current?.(frameIndex);
                 },
             });
+
+            draggable?.kill();
+            draggable = Draggable.create(dragProxy, {
+                type: "x",
+                trigger: dino,
+                cursor: "grab",
+                activeCursor: "grabbing",
+                onDrag: function () {
+                    st.scroll(st.scroll() + this.deltaX * DRAG_MULTIPLIER);
+                },
+            })[0];
         };
 
         build();
@@ -65,14 +84,17 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, frameSetterRef 
 
         const onResize = () => {
             st.kill();
+            draggable?.kill();
             build();
             ScrollTrigger.refresh();
         };
-        window.addEventListener("resize", onResize);
+      window.addEventListener("resize", onResize);
 
         return () => {
             window.removeEventListener("resize", onResize);
             st?.kill();
+            draggable?.kill();
+            dragProxy.remove();
         };
-    },[]);
+    }, []);
 }
