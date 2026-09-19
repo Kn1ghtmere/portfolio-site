@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Draggable } from 'gsap/Draggable';
 import { useGSAP } from "@gsap/react";
+import Lenis from 'lenis';
 
 gsap.registerPlugin(ScrollTrigger, Draggable);
 
@@ -21,6 +22,18 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
 
         let st;
         let draggable;
+
+        const lenis = new Lenis({
+            duration: 1.1,
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            touchMultiplier: 1.5,
+        });
+        lenis.on("scroll", ScrollTrigger.update);
+
+        const tickerCallback = (time) => lenis.raf(time * 1000);
+        gsap.ticker.add(tickerCallback);
+        gsap.ticker.lagSmoothing(0);
 
         const dragProxy = document.createElement("div");
         dragProxy.style.cssText = 
@@ -46,7 +59,7 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
                 start: "top top",
                 end: () => `+=${totalScroll}`,
                 pin: true,
-                scrub: 1,
+                scrub: true,
                 onUpdate: (self) => {
                     const p = self.progress;
                     const settle = gsap.utils.clamp(
@@ -70,7 +83,7 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
                     gsap.set(ground, {
                         y: dinoY + dinoHeight * dinoScale });
 
-                        
+
                  const distanceTravelled = totalScroll * p;
                 const frameIndex = Math.floor(distanceTravelled / STEP_PX);
                  frameSetterRef.current?.(frameIndex);
