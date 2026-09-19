@@ -7,12 +7,32 @@
    --color-dino-bg: #F7F5E8;
   --color-dino-surface: #FFFDF3;
   --color-dino-text: #292929;
-  --color-dino-green: #5E8C61;
-  --color-dino-orange: #D98B5F;
+ --color-backgrounddark: #202124;
+  --color-foregrounddark: #ACACAC;
+  --color-foregroundlight: #535353;
+  --color-backgroundlight: #FFFFFF;
+  --color-itemslight: #DADADA;
+  --color-itemsdark: #454545;
 }
 
 .press-start-2p-regular {
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
   font-style: normal;
+}
+.vt323-regular {
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@keyframes pixel-burst {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty));
+    opacity: 0;
+  }
 }

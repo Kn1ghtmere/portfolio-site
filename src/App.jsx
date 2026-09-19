@@ -1,11 +1,13 @@
-import Home from "../src/components/Home"
-import Navbar from "./components/Navbar"
+import Home from "./sections/Home"
+import Navbar from "./sections/Navbar"
+import Contact from "./sections/Contact"
 
 function App() {
   return (
     <>
     <Navbar/>
-    <Home />
+    <Contact/>
+    
     </>
   )
 }
