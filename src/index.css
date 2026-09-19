@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import "tailwindcss";
 
-@theme {
+@theme{
   --font-pixel: "Press Start 2P", cursive;
   --font-retro: "VT323", monospace;
    --color-dino-bg: #F7F5E8;
@@ -15,4 +15,7 @@
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
   font-style: normal;
+}
+.pixel-art{
+  image-rendering: pixelated;
 }
