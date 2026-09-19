@@ -4,11 +4,12 @@
 @theme{
   --font-pixel: "Press Start 2P", cursive;
   --font-retro: "VT323", monospace;
-   --color-dino-bg: #F7F5E8;
-  --color-dino-surface: #FFFDF3;
-  --color-dino-text: #292929;
-  --color-dino-green: #5E8C61;
-  --color-dino-orange: #D98B5F;
+  --color-backgrounddark: #202124;
+  --color-foregrounddark: #ACACAC;
+  --color-foregroundlight: #535353;
+  --color-backgroundlight: #FFFFFF;
+  --color-itemslight: #DADADA;
+  --color-itemsdark: #454545;
 }
 
 .press-start-2p-regular {
