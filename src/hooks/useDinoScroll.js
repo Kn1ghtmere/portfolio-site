@@ -4,7 +4,8 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SETTLE_FRACTION = 0.15;
+const RUN_FRACTION = 0.02;
+const SETTLE_END_FRACTION = 0.13;
 const STEP_PX = 45;
 
 export function useDinoScroll({ containerRef, trackRef, dinoRef, frameSetterRef }) {
@@ -23,7 +24,7 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, frameSetterRef 
             const margin = 24;
 
             
-            const introY = window.innerHeight * 0.55;
+            const introY = window.innerHeight * 0.4;
             const footerY = window.innerHeight - dinoHeight - margin;
             const introScale = 2;
             const footerScale = 1;
@@ -38,7 +39,11 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, frameSetterRef 
                 scrub: true,
                 onUpdate: (self) => {
                     const p = self.progress;
-                    const settle = gsap.utils.clamp(0, 1, p / SETTLE_FRACTION);
+                    const settle = gsap.utils.clamp(
+                         0,
+                         1,
+                         ( p - SETTLE_END_FRACTION) / (SETTLE_END_FRACTION - RUN_FRACTION)
+                    );
 
                     gsap.set(track, { x: -totalScroll * p });
 
