@@ -6,8 +6,8 @@ import Lenis from 'lenis';
 
 gsap.registerPlugin(ScrollTrigger, Draggable);
 
-const RUN_FRACTION = 0.02;
-const SETTLE_END_FRACTION = 0.13;
+const RUN_FRACTION = 0.06;
+const SETTLE_END_FRACTION = 0.16;
 const STEP_PX = 45;
 const DRAG_MULTIPLIER = 3.1;
 
@@ -25,10 +25,11 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
 
         const lenis = new Lenis({
             duration: 1.1,
+            lerp: 0.6,
             smoothWheel: true,
-            wheelMultiplier: 1,
+            wheelMultiplier: 2.4,
             touchMultiplier: 1.5,
-        });
+        }); 
         lenis.on("scroll", ScrollTrigger.update);
 
         const tickerCallback = (time) => lenis.raf(time * 1000);
