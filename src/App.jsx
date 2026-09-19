@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import Dino from "./components/dino";
+import Ground from "./components/ground";
 import { useDinoScroll } from "./hooks/useDinoScroll";
 
 
@@ -17,12 +18,14 @@ function HorizontalPortfolio() {
   const trackRef = useRef(null);
   const dinoRef = useRef(null);
   const frameSetterRef = useRef(null);
+  const groundRef = useRef(null);
 
-  useDinoScroll({ containerRef, trackRef, dinoRef, frameSetterRef });
+  useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef });
 
   return (
     <>
       <Dino ref={dinoRef} frameSetterRef={frameSetterRef} />
+      <Ground ref={groundRef} />
       <section ref={containerRef} className="h-screen overflow-hidden relative">
         <div ref={trackRef} className="flex h-full will-change-transform">
          <PlaceholderBlock label="section 1" />

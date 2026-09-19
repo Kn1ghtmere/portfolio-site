@@ -10,12 +10,14 @@ const SETTLE_END_FRACTION = 0.13;
 const STEP_PX = 45;
 const DRAG_MULTIPLIER = 3.1;
 
-export function useDinoScroll({ containerRef, trackRef, dinoRef, frameSetterRef }) {
+export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef }) {
     useGSAP(() => {
         const container = containerRef.current;
         const track = trackRef.current;
         const dino = dinoRef.current;
-        if (!container || !track || !dino) return;
+        const ground = groundRef.current;
+        if (!container || !track || !dino || !ground) return;
+        
 
         let st;
         let draggable;
@@ -50,17 +52,25 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, frameSetterRef 
                     const settle = gsap.utils.clamp(
                          0,
                          1,
-                         ( p - SETTLE_END_FRACTION) / (SETTLE_END_FRACTION - RUN_FRACTION)
+                         ( p - RUN_FRACTION) / (SETTLE_END_FRACTION - RUN_FRACTION)
                     );
+                    
+                    const dinoX = gsap.utils.interpolate(walkerStartX, walkerEndX, p);
+                    const dinoY = gsap.utils.interpolate(introY, footerY, settle);
+                    const dinoScale = gsap.utils.interpolate(introScale, footerScale, settle);
 
                     gsap.set(track, { x: -totalScroll * p });
 
                     gsap.set(dino, {
-                        x: gsap.utils.interpolate(walkerStartX, walkerEndX, p),
-                        y: gsap.utils.interpolate(introY, footerY, settle),
-                        scale: gsap.utils.interpolate(introScale, footerScale, settle),
+                        x: dinoX,
+                        y: dinoY,
+                        scale: dinoScale,
                     });
-                 
+
+                    gsap.set(ground, {
+                        y: dinoY + dinoHeight * dinoScale });
+
+                        
                  const distanceTravelled = totalScroll * p;
                 const frameIndex = Math.floor(distanceTravelled / STEP_PX);
                  frameSetterRef.current?.(frameIndex);
