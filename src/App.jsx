@@ -16,13 +16,13 @@ function HorizontalPortfolio() {
   const containerRef = useRef(null);
   const trackRef = useRef(null);
   const dinoRef = useRef(null);
-  const isRunningRef = useRef(false);
+  const frameSetterRef = useRef(null);
 
-  useDinoScroll({ containerRef, trackRef, dinoRef, isRunningRef });
+  useDinoScroll({ containerRef, trackRef, dinoRef, frameSetterRef });
 
   return (
     <>
-      <Dino ref={dinoRef} isRunningRef={isRunningRef} />
+      <Dino ref={dinoRef} frameSetterRef={frameSetterRef} />
       <section ref={containerRef} className="h-screen overflow-hidden relative">
         <div ref={trackRef} className="flex h-full will-change-transform">
          <PlaceholderBlock label="section 1" />

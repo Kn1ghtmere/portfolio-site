@@ -11,21 +11,19 @@ const SPRITES = {
     dark: [rightLegDark, leftLegDark],
 };
 
-const Dino = forwardRef(function Dino({ isRunningRef }, ref) {
+const Dino = forwardRef(function Dino({ frameSetterRef }, ref) {
     const { theme } = useTheme();
     const imgRef = useRef(null);
-    const frame = useRef(0);
 
 useEffect(() => {
     const frames = SPRITES[theme];
-    const id = setInterval(() => {
-        if (!isRunningRef.current) return;
-        frame.current = (frame.current + 1) % frames.length;
-        if (imgRef.current) imgRef.current.src = frames[frame.current];
-    }, 120);
-
-    return () => clearInterval(id);
-}, [theme, isRunningRef]);
+    frameSetterRef.current = (index) => {
+        if (imgRef.current) imgRef.current.src = frames[index % frames.length];
+    };
+    return () => {
+        frameSetterRef.current = null;
+    };
+}, [theme, frameSetterRef]);
 
 return (
     <div

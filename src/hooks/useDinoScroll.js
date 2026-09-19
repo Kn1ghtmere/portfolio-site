@@ -5,9 +5,9 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger);
 
 const SETTLE_FRACTION = 0.15;
-const RUN_VELOCITY_THRESHOLD = 50;
+const STEP_PX = 45;
 
-export function useDinoScroll({ containerRef, trackRef, dinoRef, isRunningRef }) {
+export function useDinoScroll({ containerRef, trackRef, dinoRef, frameSetterRef }) {
     useGSAP(() => {
         const container = containerRef.current;
         const track = trackRef.current;
@@ -47,8 +47,10 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, isRunningRef })
                         y: gsap.utils.interpolate(introY, footerY, settle),
                         scale: gsap.utils.interpolate(introScale, footerScale, settle),
                     });
-
-                    isRunningRef.current = Math.abs(self.getVelocity()) > RUN_VELOCITY_THRESHOLD;
+                 
+                 const distanceTravelled = totalScroll * p;
+                const frameIndex = Math.floor(distanceTravelled / STEP_PX);
+                 frameSetterRef.current?.(frameIndex);
                 },
             });
         };
