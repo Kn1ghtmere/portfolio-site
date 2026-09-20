@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme{
   --font-pixel: "Press Start 2P", cursive;
@@ -10,6 +11,10 @@
   --color-backgroundlight: #FFFFFF;
   --color-itemslight: #DADADA;
   --color-itemsdark: #454545;
+  --color-textlight: #616161;
+  --color-textdark: #9c9c9c;
+  --color-subtextdark: #CED0D9;
+  --color-subtextlight: #444746;
 }
 
 .press-start-2p-regular {
@@ -60,7 +65,7 @@ body {
   );
 }
 
-@media (prefer-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   .shimmer-text {
     animation: none;
   }

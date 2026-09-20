@@ -4,6 +4,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import Dino from "./components/dino";
 import Ground from "./components/ground";
 import ScrollHint from "./components/ScrollHint"
+import Home from "./sections/Home";
 import { useDinoScroll } from "./hooks/useDinoScroll";
 
 
@@ -33,7 +34,7 @@ function HorizontalPortfolio() {
       <section ref={containerRef} className="h-screen overflow-hidden relative">
         <div ref={trackRef} className="flex h-full will-change-transform">
          <PlaceholderBlock label="" />
-         <PlaceholderBlock label="Home" />
+         <Home />
          <PlaceholderBlock label="work/projects" />
          <PlaceholderBlock label="contact page" />
         </div>
