@@ -12,8 +12,10 @@ const STEP_PX = 35;
 const DRAG_MULTIPLIER = 3.1;
 const DIRECTION_LIMIT = 0.012;
 const SCROLL_MATCH = 0.002;
+const SPACE_SCROLL_VALUE = 30;
+const SPACE_SCROLL_DURATION = 1.5; 
 
-export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef }) {
+export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRef }) {
     useGSAP(() => {
         const container = containerRef.current;
         const track = trackRef.current;
@@ -26,6 +28,18 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
         let draggable;
         let facing = 1;
         let facingAnchorP = 0;
+        let hintHidden = false;
+
+
+        const hideHint = () => {
+            if(hintHidden) return;
+            hintHidden = true;
+            const hint = hintRef?.current;
+            if (hint) {
+                hint.style.opacity = "0";
+                hint.style.pointerEvents = "none";
+            }
+        };
 
         const lenis = new Lenis({
             duration: 1.1,
@@ -39,6 +53,24 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
         const tickerCallback = (time) => lenis.raf(time * 1000);
         gsap.ticker.add(tickerCallback);
         gsap.ticker.lagSmoothing(0);
+
+        const onKeydown = (e) => {
+            if (e.code !== "Space") return;
+            const target = document.activeElement;
+            const tag = target?.tagName;
+            if (tag === "INPUT" || tag === "TEXTAREA" || target?.isContentEditable) return;
+            e.preventDefault();
+            hideHint();
+            const current = st.scroll();
+            lenis.scrollTo(current + SPACE_SCROLL_VALUE, {
+                duration: SPACE_SCROLL_DURATION,
+                easing: (t) => 1 - Math.pow(1 - t, 3),
+            });
+        };
+        window.addEventListener("keydown" , onKeydown);
+        const onFirstScrollSignal = () => hideHint();
+        window.addEventListener("wheel", onFirstScrollSignal, {passive: true, once: true});
+        window.addEventListener("touchstart", onFirstScrollSignal, { passive: true, once: true});
 
         const dragProxy = document.createElement("div");
         dragProxy.style.cssText = 
@@ -122,6 +154,7 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
                 cursor: "grab",
                 activeCursor: "grabbing",
                 onDrag: function () {
+                    hideHint();
                     st.scroll(st.scroll() + this.deltaX * DRAG_MULTIPLIER);
                 },
             })[0];
@@ -140,6 +173,9 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
 
         return () => {
             window.removeEventListener("resize", onResize);
+            window.removeEventListener("keydown", onKeydown);
+            window.removeEventListener("wheel", onFirstScrollSignal);
+            window.removeEventListener("touchstart", onFirstScrollSignal);
             st?.kill();
             draggable?.kill();
             dragProxy.remove();
