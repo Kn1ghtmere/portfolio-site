@@ -8,6 +8,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>portfolio-site</title>
+    <script>
+      (function() {
+        var saved = localStorage.getItem("theme");
+        if (saved !== "light") document.documentElement.classList.add("dark");
+      })();
+      </script>
   </head>
   <body>
     <div id="root"></div>

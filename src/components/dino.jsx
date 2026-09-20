@@ -47,8 +47,8 @@ return (
         ref={imgRef}
         src={SPRITES[theme][0]}
         alt="Dino"
-        className="w-20 h-auto pixel-art select-none"
-        style = {{WebkitUserDrag: "none", touchAction: "none"}}
+        className="w-20 pixel-art select-none"
+        style = {{WebkitUserDrag: "none", touchAction: "none", aspectRatio: "88/85"}}
     />
 </div>
 );
