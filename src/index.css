@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 @import "tailwindcss";
 
 @theme{
@@ -32,3 +32,36 @@ body {
   color: var(--color-foregrounddark);
 }
 
+@keyframes shimmer-sweep {
+  0% {background-position: 150% 0;}
+  100% { background-position: -50% 0;}
+}
+
+.shimmer-text {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-foregroundlight) 40%,
+    #ffffff 50%,
+    var(--color-foregroundlight) 60%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-sweep 2.2s ease-in-out infinite;
+}
+
+.dark .shimmer-text {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-foregrounddark) 40%,
+    #ffffff 50%,
+    var(--color-foregrounddark) 60%
+  );
+}
+
+@media (prefer-reduced-motion: reduce) {
+  .shimmer-text {
+    animation: none;
+  }
+}

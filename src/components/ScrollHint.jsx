@@ -6,7 +6,7 @@ const ScrollHint = forwardRef(function ScrollHint(_,ref) {
         ref={ref}
         className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-2 transition-opacity duration-500"
         >
-            <span className="font-pixel text-lg text-foregroundlight dark:foregrounddark">
+            <span className="font-pixel text-3xl text-foregroundlight dark:foregrounddark shimmer-text">
                {">>>"}
             </span>
             
