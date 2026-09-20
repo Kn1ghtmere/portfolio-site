@@ -11,7 +11,7 @@ const SPRITES = {
     dark: [rightLegDark, leftLegDark],
 };
 
-const Dino = forwardRef(function Dino({ frameSetterRef }, ref) {
+const Dino = forwardRef(function Dino({ frameSetterRef, facingSetterRef}, ref) {
     const { theme } = useTheme();
     const imgRef = useRef(null);
 
@@ -24,6 +24,17 @@ useEffect(() => {
         frameSetterRef.current = null;
     };
 }, [theme, frameSetterRef]);
+
+useEffect(() => {
+    facingSetterRef.current = (facing) => {
+        if (imgRef.current) {
+            imgRef.current.style.transform = facing === -1 ? "scaleX(-1)" : "scaleX(1)";
+        }
+    };
+    return () => {
+        facingSetterRef.current = null;
+    };
+}, [facingSetterRef]);
 
 return (
     <div

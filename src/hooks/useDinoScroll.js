@@ -6,12 +6,12 @@ import Lenis from 'lenis';
 
 gsap.registerPlugin(ScrollTrigger, Draggable);
 
-const RUN_FRACTION = 0.06;
-const SETTLE_END_FRACTION = 0.16;
-const STEP_PX = 45;
+const RUN_FRACTION = 0.1;
+const SETTLE_END_FRACTION = 0.2;
+const STEP_PX = 35;
 const DRAG_MULTIPLIER = 3.1;
 
-export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef }) {
+export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef }) {
     useGSAP(() => {
         const container = containerRef.current;
         const track = trackRef.current;
@@ -22,12 +22,13 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
 
         let st;
         let draggable;
+        let facing = 1;
 
         const lenis = new Lenis({
             duration: 1.1,
-            lerp: 0.6,
+            lerp: 3,
             smoothWheel: true,
-            wheelMultiplier: 2.4,
+            wheelMultiplier: 1.3,
             touchMultiplier: 1.5,
         }); 
         lenis.on("scroll", ScrollTrigger.update);
@@ -63,6 +64,13 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
                 scrub: true,
                 onUpdate: (self) => {
                     const p = self.progress;
+                    if (self.direction === -1 && facing !== -1){
+                        facing = -1;
+                        facingSetterRef.current?.(facing);
+                    } else if (self.direction === 1 && facing !== 1) {
+                        facing = 1; 
+                        facingSetterRef.current?.(facing);
+                    }
                     const settle = gsap.utils.clamp(
                          0,
                          1,
