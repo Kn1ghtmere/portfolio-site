@@ -8,7 +8,7 @@ import { useDinoScroll } from "./hooks/useDinoScroll";
 
 function PlaceholderBlock({ label }) {
   return (
-    <div className="w-screen h-full flex items-center justify-center shrink-0 border-r border-dashed border-gray-400">
+    <div className="w-screen h-full flex items-center justify-center shrink-0 bordker-r border-dashed border-gray-400">
       <span className="text-xl opacity-40">{label}</span>
     </div>
   );
