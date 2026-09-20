@@ -12,7 +12,7 @@ const SPRITES = {
 };
 
 const Dino = forwardRef(function Dino({ frameSetterRef, facingSetterRef}, ref) {
-    const { theme } = useTheme();
+    const { theme, toggleTheme } = useTheme();
     const imgRef = useRef(null);
 
 useEffect(() => {
@@ -39,6 +39,7 @@ useEffect(() => {
 return (
     <div
     ref={ref}
+    onDoubleClick={toggleTheme}
     className="fixed top-0 left-0 z-50 cursor-grab active:cursor-grabbing will-change-transform"
     style={{ transformOrigin: "top left" }}
 >

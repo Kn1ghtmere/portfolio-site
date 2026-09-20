@@ -10,6 +10,7 @@ const RUN_FRACTION = 0.1;
 const SETTLE_END_FRACTION = 0.2;
 const STEP_PX = 35;
 const DRAG_MULTIPLIER = 3.1;
+const DIRECTION_LIMIT = 0.012;
 
 export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef }) {
     useGSAP(() => {
@@ -23,6 +24,7 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
         let st;
         let draggable;
         let facing = 1;
+        let facingAnchorP = 0;
 
         const lenis = new Lenis({
             duration: 1.1,
@@ -63,14 +65,27 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
                 pin: true,
                 scrub: true,
                 onUpdate: (self) => {
-                    const p = self.progress;
-                    if (self.direction === -1 && facing !== -1){
-                        facing = -1;
-                        facingSetterRef.current?.(facing);
-                    } else if (self.direction === 1 && facing !== 1) {
-                        facing = 1; 
+                   const p = self.progress;
+
+                   const facingDelta = p - facingAnchorP;
+                   if (Math.abs(facingDelta) > DIRECTION_LIMIT) {
+                    const newFacing = facingDelta > 0 ? 1 : -1;
+                    facingAnchorP = p;
+                    if (newFacing !== facing) {
+                        facing = newFacing;
                         facingSetterRef.current?.(facing);
                     }
+                   }
+
+                   if( p <= 0 && facing !== 1) {
+                    facing = 1;
+                    facingAnchorP = p;
+                    facingSetterRef.current?.(facing);
+                   } else if (p >= 1 && facing !== -1) {
+                    facing = -1;
+                    facingAnchorP = p;
+                    facingSetterRef.current?.(facing);
+                   }
                     const settle = gsap.utils.clamp(
                          0,
                          1,

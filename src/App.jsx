@@ -29,10 +29,10 @@ function HorizontalPortfolio() {
       <Ground ref={groundRef} />
       <section ref={containerRef} className="h-screen overflow-hidden relative">
         <div ref={trackRef} className="flex h-full will-change-transform">
-         <PlaceholderBlock label="section 1" />
-         <PlaceholderBlock label="section 2" />
-         <PlaceholderBlock label="section 3" />
-         <PlaceholderBlock label="section 4" />
+         <PlaceholderBlock label="" />
+         <PlaceholderBlock label="Home" />
+         <PlaceholderBlock label="work/projects" />
+         <PlaceholderBlock label="contact page" />
         </div>
       </section>
     </>
