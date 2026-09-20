@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import chromedinopng from "../assets/chromedino.png";
 
 const PARTICLE_COUNT = 10;
 

@@ -13,6 +13,12 @@
   --color-backgroundlight: #FFFFFF;
   --color-itemslight: #DADADA;
   --color-itemsdark: #454545;
+  --color-backgrounddark: #202124;
+  --color-foregrounddark: #ACACAC;
+  --color-foregroundlight: #535353;
+  --color-backgroundlight: #FFFFFF;
+  --color-itemslight: #DADADA;
+  --color-itemsdark: #454545;
 }
 
 .press-start-2p-regular {
