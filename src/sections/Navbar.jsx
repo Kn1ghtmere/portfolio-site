@@ -68,7 +68,7 @@ function Navbar() {
   ];
 
   return (
-    <nav className="bg-dino-surface h-auto sticky text-white font-pixel top-0">
+    <nav className="bg-dino-surface h-auto fixed top-0 inset-x-0 z-50 text-white font-pixel top-0">
       <div className="flex items-center justify-between px-8 py-9">
         <div className="flex items-center justify-center justify-end">
          <a href="#home" className="text-[26px] font-bold text-dino-text transition transform duration-200 hover:translate-y-1 active:translate-y-0.5 cursor-pointer">
