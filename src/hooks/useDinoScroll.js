@@ -11,6 +11,7 @@ const SETTLE_END_FRACTION = 0.2;
 const STEP_PX = 35;
 const DRAG_MULTIPLIER = 3.1;
 const DIRECTION_LIMIT = 0.012;
+const SCROLL_MATCH = 0.002;
 
 export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef }) {
     useGSAP(() => {
@@ -77,11 +78,11 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
                     }
                    }
 
-                   if( p <= 0 && facing !== 1) {
+                   if( p <= SCROLL_MATCH && facing !== 1) {
                     facing = 1;
                     facingAnchorP = p;
                     facingSetterRef.current?.(facing);
-                   } else if (p >= 1 && facing !== -1) {
+                   } else if (p >= 1 - SCROLL_MATCH && facing !== -1) {
                     facing = -1;
                     facingAnchorP = p;
                     facingSetterRef.current?.(facing);
