@@ -1,34 +1,33 @@
-## Portfolio Site
-https://kn1ghtmere.vercel.app/
-this is a project for thirdspace.hackclub.com
-im contributing with my friend
-im working on the intro and site skeleton 
-Hes working on Components such as navbar and Site Sections
+# Site for my friend
 
-# features:
--  The dino is interactable
--  it can be dragged , scrolled , and even by pressing space it moves
--  the dino changes directions according to scroll direction
--  the dino toggles the theme of the site on double clicking(ill add a hint for it too later)
--  the dino has a shrink and descend animation which is reversable
--  the home section , and various empty placeholders for later additions/merge
--  the about section has a dropdown.
--  oh yea it has themes duh
+me and my friend are participating in thirdspace which is a program by hackclub. we are making a portfolio for him cuz why not.
 
-## Tech i used:
--  React plus Vite
--  Gsap for animations 
--  lenis for smooth scroll
--  tailwind css ofcourse (new to it , i like it) 
--  pnpm (my fren said its better den npm smhow)
--  vercel for deployement
--  git n github for version control n commits n stuff ofcourse
--  the goat claude (excellent debugger plus good for learning bout gsap plugins n stuff)
--  vscode my only editor
--  does my pc count as tech? 
--  what qualifies as tech ? uh "used my brain 😊"
+___
+## features.
+i am working on navbar foorter and page sections so here are some thing that will be from my end.
 
-# screenshots:
-this is how it shuld look like: (works on my device):
-![alt text](image.png)
-![alt text](image-1.png)
+- The site will be on horizonta scroll/
+- The site will feature both dark mode and light mode.
+- The site will use some assets from googgle dino game.
+- and ofc the site has a theme
+
+## technologies used.
+- html
+- css
+- javascript
+- react
+- tailwind
+- gsap
+- email js
+- claude, deepseek, gpt and gemini were used to debug problems and help a little with code
+
+## the site currently doesn't have a working demo and it is under progress
+
+## things to add
+- make the site responsive for majoriy of devices(eg. mobile, large screens and tablets).
+- make it interactive and a little joyful
+- add animations according to theme and playfulness
+- make sections and integrate with my friends site
+- integrate the horizontal scroll with vertical footer and make all sections and pages be integrated with the whole site.
+- try to use 0 to no AI and use handmade assets if possible.
+- get used to team work and make sure to do updates to further changes
