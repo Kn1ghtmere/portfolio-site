@@ -3,7 +3,7 @@ import About from "../components/About";
 export default function Home() {
     return (
         <div className="w-screen h-full shrink-0 flex items-start justify-start border-r border-dashed border-gray-400">
-           <div className="pl-60 pt-50">
+           <div className="pl-40 pt-50">
             <h1 className="pb-20 font-pixel text-6xl text-foregroundlight dark:text-white">
                 Wassupp...
             </h1>
