@@ -6,7 +6,8 @@ import Ground from "./components/ground";
 import ScrollHint from "./components/ScrollHint"
 import Home from "./sections/Home";
 import { useDinoScroll } from "./hooks/useDinoScroll";
-
+import Navbar from "./sections/Navbar"
+import Contact from "./sections/Contact"
 
 function PlaceholderBlock({ label }) {
   return (
@@ -26,6 +27,7 @@ function HorizontalPortfolio() {
 
   useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRef });
 
+
   return (
     <>
       <Dino ref={dinoRef} frameSetterRef={frameSetterRef} facingSetterRef={facingSetterRef}/>
@@ -39,6 +41,9 @@ function HorizontalPortfolio() {
          <PlaceholderBlock label="contact page" />
         </div>
       </section>
+    <Navbar/>
+    <Contact/>
+    
     </>
   );
 }

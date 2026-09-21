@@ -5,6 +5,15 @@
 @theme{
   --font-pixel: "Press Start 2P", cursive;
   --font-retro: "VT323", monospace;
+   --color-dino-bg: #F7F5E8;
+  --color-dino-surface: #FFFDF3;
+  --color-dino-text: #292929;
+ --color-backgrounddark: #202124;
+  --color-foregrounddark: #ACACAC;
+  --color-foregroundlight: #535353;
+  --color-backgroundlight: #FFFFFF;
+  --color-itemslight: #DADADA;
+  --color-itemsdark: #454545;
   --color-backgrounddark: #202124;
   --color-foregrounddark: #ACACAC;
   --color-foregroundlight: #535353;
@@ -63,10 +72,33 @@ body {
     #ffffff 50%,
     var(--color-foregrounddark) 60%
   );
-}
+};
 
 @media (prefers-reduced-motion: reduce) {
   .shimmer-text {
     animation: none;
   }
+.vt323-regular {
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+}
+
+@keyframes pixel-burst {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty));
+    opacity: 0;
+  }
+}
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
