@@ -14,13 +14,15 @@ const DIRECTION_LIMIT = 0.012;
 const SCROLL_MATCH = 0.002;
 const SPACE_SCROLL_VALUE = 30;
 const SPACE_SCROLL_DURATION = 1.5; 
+const NAV_DROP_DURATION = 1.2;
 
-export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRef }) {
+export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRef, navRef }) {
     useGSAP(() => {
         const container = containerRef.current;
         const track = trackRef.current;
         const dino = dinoRef.current;
         const ground = groundRef.current;
+        const nav = navRef?.current;
         if (!container || !track || !dino || !ground) return;
         
 
@@ -91,6 +93,17 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
             const walkerStartX = margin;
             const walkerEndX = window.innerWidth - dinoWidth - margin;
 
+            const numSections = track.children.length;
+            const steps = Math.max(numSections - 1, 1);
+            const sectionStep = 1 / steps ;
+            const navRevealWindow = sectionStep * NAV_DROP_DURATION;
+            const navRevealEnd = sectionStep;
+            const navRevealStart = navRevealEnd - navRevealWindow;
+
+            if(nav) {
+                gsap.set(nav, {yPercent: -100});
+            }
+
             st = ScrollTrigger.create({
                 trigger: container,
                 start: "top top",
@@ -139,6 +152,18 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
 
                     gsap.set(ground, {
                         y: dinoY + dinoHeight * dinoScale });
+
+                    if(nav) {
+                        const navProgress = gsap.utils.clamp(
+                            0,
+                            1,
+                            (p - navRevealStart) / navRevealWindow 
+                        );
+
+                        const navYPercent = gsap.utils.interpolate(-100, 0, navProgress);
+                        gsap.set(nav, { yPercent: navYPercent});
+                        nav.style.pointerEvents = navProgress > 0 ? "auto" : "none";
+                    }
 
 
                  const distanceTravelled = totalScroll * p;

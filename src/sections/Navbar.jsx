@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 
 
 
@@ -26,7 +26,7 @@ function NavLink({ href, children, isActive, onClick }) {
   );
 }
 
-function Navbar() {
+const Navbar = forwardRef(function Navbar(_, ref) {
   const [active, setActive] = useState("about");
 
   const links = [
@@ -36,7 +36,7 @@ function Navbar() {
   ];
 
   return (
-    <nav className="bg-backgroundlight dark:bg-backgrounddark h-auto fixed top-0 inset-x-0 z-50 text-foregroundlight dark:text-subtextdark font-pixel top-0">
+    <nav ref={ref} className="bg-backgroundlight dark:bg-backgrounddark h-auto fixed top-0 inset-x-0 z-50 text-foregroundlight dark:text-subtextdark font-pixel top-0">
       <div className="flex items-center justify-between px-8 py-9">
         <div className="flex items-center justify-center justify-end">
          <a href="#home" className="text-[26px] font-bold text-subtextlight dark:text-white transition transform duration-200 hover:translate-y-1 active:translate-y-0.5 cursor-pointer">
@@ -60,6 +60,6 @@ function Navbar() {
       </div>
     </nav>
   );
-}
+});
 
 export default Navbar;
