@@ -8,6 +8,9 @@ import Home from "./sections/Home";
 import { useDinoScroll } from "./hooks/useDinoScroll";
 import Navbar from "./sections/Navbar"
 import Contact from "./sections/Contact"
+import Projects from "./sections/Projects";
+import About from "./components/About";
+
 
 function PlaceholderBlock({ label }) {
   return (
@@ -37,13 +40,11 @@ function HorizontalPortfolio() {
         <div ref={trackRef} className="flex h-full will-change-transform">
          <PlaceholderBlock label="" />
          <Home />
-         <PlaceholderBlock label="work/projects" />
-         <PlaceholderBlock label="contact page" />
+         <Projects />
+         <Contact />
         </div>
       </section>
     <Navbar/>
-    <Contact/>
-    
     </>
   );
 }

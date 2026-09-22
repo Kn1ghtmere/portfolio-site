@@ -13,7 +13,13 @@ const DRAG_MULTIPLIER = 3.1;
 const DIRECTION_LIMIT = 0.012;
 const SCROLL_MATCH = 0.002;
 const SPACE_SCROLL_VALUE = 30;
-const SPACE_SCROLL_DURATION = 1.5; 
+const SPACE_SCROLL_DURATION = 1.5;
+
+let scrollToIdImpl = null;
+
+export function scrollToId(id) {
+    scrollToIdImpl?.(id);
+}
 
 export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRef }) {
     useGSAP(() => {
@@ -162,6 +168,19 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
 
         build();
 
+        scrollToIdImpl = (id) => {
+            const el = document.getElementById(id);
+            if (!el || !st) return;
+            const total = track.scrollWidth - window.innerWidth;
+            if (total <= 0) return;
+            const progress = gsap.utils.clamp(0, 1, el.offsetLeft / total);
+            const target = st.start + (st.end - st.start) * progress;
+            hideHint();
+            lenis.scrollTo(target, {
+                duration: SPACE_SCROLL_DURATION,
+                easing: (t) => 1 - Math.pow(1 - t, 3),
+            });
+        };
 
         const onResize = () => {
             st.kill();
@@ -179,6 +198,7 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
             st?.kill();
             draggable?.kill();
             dragProxy.remove();
+            scrollToIdImpl = null;
         };
     }, []);
 }

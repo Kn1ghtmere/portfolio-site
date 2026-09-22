@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { scrollToId } from "../hooks/useDinoScroll";
 
 const PARTICLE_COUNT = 10;
 
@@ -22,8 +23,10 @@ function NavLink({ href, children, isActive, onClick }) {
   };
 
   const handleClick = (e) => {
+    e.preventDefault();
     burst();
     onClick?.(e);
+    scrollToId(href.replace("#", ""));
   };
 
   return (
@@ -63,7 +66,7 @@ function Navbar() {
 
   const links = [
     { id: "about", label: "about." },
-    { id: "work", label: "work." },
+    { id: "projects", label: "work." },
     { id: "contact", label: "contact." },
   ];
 
