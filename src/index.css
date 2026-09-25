@@ -64,3 +64,12 @@ body {
     var(--color-foregrounddark) 60%
   );
 }
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
