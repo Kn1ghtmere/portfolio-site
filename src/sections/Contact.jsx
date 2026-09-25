@@ -128,7 +128,7 @@ function Contact() {
                 placeholder="Rordon Gamsey"
               />
             </div>
-            <img
+            <noimg
               src={chromedino}
               alt=""
               aria-hidden="true"
@@ -151,7 +151,7 @@ function Contact() {
                 placeholder="ilikeicebear@gmail.com"
               />
             </div>
-            <img className="h-8 opacity-70 shrink-0" src={cactus} alt="" />
+            <noimg className="h-8 opacity-70 shrink-0" src={cactus} alt="" />
           </div>
 
           <div className="flex items-center justify-between gap-3 px-5 py-3">
@@ -169,7 +169,7 @@ function Contact() {
                 placeholder="give free robux"
               />
             </div>
-            <img className="h-9 opacity-80 shrink-0" src={threeCactus} alt="" aria-hidden="true" />
+            <noimg className="h-9 opacity-80 shrink-0" src={threeCactus} alt="" aria-hidden="true" />
           </div>
 
           <div className="flex items-center justify-between gap-4 flex-wrap px-5 py-3 bg-[#EFEDE7] border-t-2 border-dashed border-gray-400">
