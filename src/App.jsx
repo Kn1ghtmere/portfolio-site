@@ -7,6 +7,7 @@ import ScrollHint from "./components/ScrollHint"
 import Home from "./sections/Home";
 import { useDinoScroll } from "./hooks/useDinoScroll";
 import Navbar from "./sections/Navbar";
+import Contact from "./sections/Contact"
 
 function PlaceholderBlock({ label }) {
   return (
@@ -38,7 +39,7 @@ function HorizontalPortfolio() {
          <PlaceholderBlock label="" />
          <Home />
          <PlaceholderBlock label="work/projects" />
-         <PlaceholderBlock label="contact page" />
+         <Contact />
         </div>
       </section>
     </>

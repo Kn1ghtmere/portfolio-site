@@ -64,9 +64,3 @@ body {
     var(--color-foregrounddark) 60%
   );
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .shimmer-text {
-    animation: none;
-  }
-}
