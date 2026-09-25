@@ -78,7 +78,7 @@ function Contact() {
       />
 
       <div className="relative z-10 flex flex-col justify-start p-2 max-w-2xl mx-auto w-full">
-        <h1 className="text-dino-text text-2xl font-pixel hover:drop-shadow-[0_0_10px_rgba(0,0,0,0.3)] transition transform duration-300 decoration-2 underline-offset-4">
+        <h1 className="text-dino-text text-3xl font-pixel hover:drop-shadow-[0_0_10px_rgba(0,0,0,0.3)] transition transform duration-300 decoration-2 underline-offset-4">
           Socials & ways to connect
         </h1>
 
@@ -183,7 +183,7 @@ function Contact() {
             </button>
 
             {status === "sent" && (
-              <p className="font-retro text-base text-green-700">Sent! Talk soon 🌵</p>
+              <p className="font-retro text-base text-green-700">Sent! les talk soon 🌵</p>
             )}
             {status === "error" && (
               <p className="font-retro text-base text-red-600">
