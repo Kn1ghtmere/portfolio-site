@@ -8,6 +8,7 @@ import Home from "./sections/Home";
 import { useDinoScroll } from "./hooks/useDinoScroll";
 import Navbar from "./sections/Navbar";
 import Contact from "./sections/Contact"
+import Footer from "./components/Footer";
 
 function PlaceholderBlock({ label }) {
   return (
@@ -42,6 +43,7 @@ function HorizontalPortfolio() {
          <Contact />
         </div>
       </section>
+      <Footer/>
     </>
   );
 }
