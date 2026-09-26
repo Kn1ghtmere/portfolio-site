@@ -9,7 +9,7 @@ import { useDinoScroll } from "./hooks/useDinoScroll";
 import Navbar from "./sections/Navbar"
 import Contact from "./sections/Contact"
 import Projects from "./sections/Projects";
-import About from "./components/About";
+import Footer from "./components/footer";
 
 
 function PlaceholderBlock({ label }) {
@@ -33,6 +33,7 @@ function HorizontalPortfolio() {
 
   return (
     <>
+    <Navbar/>
       <Dino ref={dinoRef} frameSetterRef={frameSetterRef} facingSetterRef={facingSetterRef}/>
       <Ground ref={groundRef} />
       <ScrollHint ref={hintRef} />
@@ -44,7 +45,7 @@ function HorizontalPortfolio() {
          <Contact />
         </div>
       </section>
-    <Navbar/>
+    <Footer/>
     </>
   );
 }
