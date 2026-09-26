@@ -3,9 +3,6 @@ import emailjs from "@emailjs/browser";
 import { BsGithub, BsInstagram } from "react-icons/bs";
 import { FaDiscord } from "react-icons/fa";
 import { SiChessdotcom } from "react-icons/si";
-import cactus from "../assets/cactus.png";
-import threeCactus from "../assets/3cactus.png";
-import chromedino from "../assets/chromedino.png";
 import dragon from "../assets/dragon.png";
 
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -128,12 +125,7 @@ function Contact() {
                 placeholder="Rordon Gamsey"
               />
             </div>
-            <noimg
-              src={chromedino}
-              alt=""
-              aria-hidden="true"
-              className="h-9 shrink-0 animate-[dino-hop_0.6s_ease-in-out_infinite]"
-            />
+            
           </div>
 
           <div className="flex items-center justify-between gap-3 px-5 py-3 border-b-2 border-dashed border-gray-400">
@@ -151,7 +143,6 @@ function Contact() {
                 placeholder="ilikeicebear@gmail.com"
               />
             </div>
-            <noimg className="h-8 opacity-70 shrink-0" src={cactus} alt="" />
           </div>
 
           <div className="flex items-center justify-between gap-3 px-5 py-3">
@@ -169,7 +160,6 @@ function Contact() {
                 placeholder="give free robux"
               />
             </div>
-            <noimg className="h-9 opacity-80 shrink-0" src={threeCactus} alt="" aria-hidden="true" />
           </div>
 
           <div className="flex items-center justify-between gap-4 flex-wrap px-5 py-3 bg-[#EFEDE7] border-t-2 border-dashed border-gray-400">

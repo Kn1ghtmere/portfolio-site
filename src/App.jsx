@@ -10,7 +10,7 @@ import Navbar from "./sections/Navbar"
 import Contact from "./sections/Contact"
 import Projects from "./sections/Projects";
 import Footer from "./components/footer";
-
+import About from "./components/About";
 
 function PlaceholderBlock({ label }) {
   return (
@@ -41,6 +41,7 @@ function HorizontalPortfolio() {
         <div ref={trackRef} className="flex h-full will-change-transform">
          <PlaceholderBlock label="" />
          <Home />
+         <About/>
          <Projects />
          <Contact />
         </div>

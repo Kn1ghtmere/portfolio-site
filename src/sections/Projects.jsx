@@ -1,8 +1,6 @@
 import fontsiteimg from "../assets/fontsiteimg.png";
 import selfonashelf from "../assets/selfonashelf.png";
-import cactus from "../assets/cactus.png";
-import chromedino from "../assets/chromedino.png";
-import dragon from "../assets/dragon.png";
+
 
 const projects = [
   {
@@ -27,7 +25,7 @@ function Projects() {
   return (
     <section
       className="relative w-screen h-screen shrink-0 bg-backgroundlight dark:bg-backgrounddark flex flex-col justify-center py-6 px-6 border-r border-dashed overflow-hidden"
-      id="projects"
+      id="work"
     >
       <style>{`
         @keyframes dino-hop {
@@ -36,12 +34,7 @@ function Projects() {
         }
       `}</style>
 
-      <img
-        src={dragon}
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none select-none absolute -right-10 -top-10 w-48 opacity-[0.07] rotate-12"
-      />
+     
 
       <div className="relative z-10 flex flex-col justify-start p-2 max-w-4xl mx-auto w-full">
         <h1 className="text-textlight dark:text-white text-2xl font-pixel text-center hover:drop-shadow-[0_0_10px_rgba(0,0,0,0.3)] transition transform duration-300 decoration-2 underline-offset-4">
@@ -66,12 +59,7 @@ function Projects() {
                   </span>
                   <span className="font-pixel text-lg text-black">{project.name}</span>
                 </div>
-                <img
-                  src={chromedino}
-                  alt=""
-                  aria-hidden="true"
-                  className="h-9 shrink-0 animate-[dino-hop_0.6s_ease-in-out_infinite]"
-                />
+               
               </div>
 
               {project.screenshot && (
@@ -86,12 +74,7 @@ function Projects() {
 
               <div className="flex items-center justify-between gap-3 px-5 py-3">
                 <p className="font-retro text-lg text-black">{project.line}</p>
-                <img
-                  src={cactus}
-                  alt=""
-                  aria-hidden="true"
-                  className="h-8 opacity-70 shrink-0"
-                />
+              
               </div>
               
               <div className="flex items-center gap-4 px-5 py-3 bg-[#EFEDE7] border-t-2 border-dashed border-gray-400 font-retro text-base">
