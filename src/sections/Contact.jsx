@@ -59,7 +59,7 @@ function Contact() {
 
   return (
     <section
-      className="relative w-screen h-screen shrink-0 bg-backgroundlight dark:bg-backgrounddark flex flex-col justify-center py-6 px-6 border-r border-dashed overflow-hidden"
+      className="relative w-screen h-screen shrink-0 bg-backgroundlight dark:bg-backgrounddark flex flex-col justify-center py-6 px-6  overflow-hidden"
       id="contact"
     >
       <style>{`

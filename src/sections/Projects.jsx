@@ -1,5 +1,6 @@
 import fontsiteimg from "../assets/fontsiteimg.png";
 import selfonashelf from "../assets/selfonashelf.png";
+import Thirdproject from "../components/Thirdproject";
 
 
 const projects = [
@@ -86,6 +87,7 @@ function Projects() {
                 >
                   Github
                 </a>
+                
                 {project.deployedlink && (
                   <a
                     href={project.deployedlink}
@@ -101,7 +103,14 @@ function Projects() {
           ))}
         </div>
       </div>
+              <div className="flex justify-center mt-6">
+            <Thirdproject title="more">
+              umm.. the one that ur using right now..
+            </Thirdproject>
+                                                          
+        </div>
     </section>
+    
   );
 }
 

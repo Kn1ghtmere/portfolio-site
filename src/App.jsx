@@ -13,7 +13,7 @@ import Projects from "./sections/Projects";
 
 function PlaceholderBlock({ label }) {
   return (
-    <div className="w-screen h-full flex items-center justify-center shrink-0 ">
+    <div className="w-screen h-full flex items-center justify-center shrink-0 bg-backgroundlight dark:bg-backgrounddark">
       <span className="text-xl opacity-40">{label}</span>
     </div>
   );

@@ -35,6 +35,8 @@ body {
 .dark body {
   background-color: var(--color-backgrounddark);
   color: var(--color-foregrounddark);
+    transition: background-color 0.3s ease, color 0.3s ease;
+
 }
 
 @keyframes shimmer-sweep {

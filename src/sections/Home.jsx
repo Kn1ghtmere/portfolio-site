@@ -2,7 +2,7 @@ import About from "../components/About";
 
 export default function Home() {
     return (
-        <div className="w-screen h-full shrink-0 flex items-start justify-start">
+        <div className="w-screen h-full shrink-0 flex items-start justify-start bg-backgroundlight dark:bg-backgrounddark">
            <div className="pl-40 pt-50">
             <h1 className="pb-20 font-pixel text-6xl text-foregroundlight dark:text-white">
                 Wassupp...
