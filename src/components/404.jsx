@@ -87,6 +87,43 @@ export default function () {
     if (!running) return;
     let obstacleIdCounter = 0;
 
+    const tick = () => {
+      if(isJumpingRef.current){
+        velocityRef.current = 0;
+
+      }
+    }
+    frameIndexRef.current += isJumpingRef.current ? 0 : 0.2;
+    if(dinoElRef.current) {
+      dinoElRef.current.style.transform = `translateY(${dinoYRef.current}px)`;
+      const frames = Sprites[theme];
+      dinoElRef.current.src = frames[Math.floor(frameIndexRef.current) % frames.length];
+
+    }
+
+    spawnTimerRef.current += 1;
+    if(spawnTimerRef.current >= nextSpawnRef.current) {
+      spawnTimerRef.current = 0;
+      nextSpawnRef.current = 55 + Math.random() * 45;
+      const playWidth = playAreaRef.current?.clientWidth ?? 800;
+      obstaclesRef.current.push({id : obstacleIdCounter++, x:playWidth});
+
+    }
+
+    const playWidth = playAreaRef.current?.clientWidth ?? 800;
+    const dinoLeft = 24;
+    const dinoRight = dinoLeft + Dino_size;
+    const dinoTop = dinoYRef.current;
+    const dinoBottom = dinoTop + Dino_size;
+
+    let collided = false;
+    obstaclesRef.current = obstaclesRef.current.filter((ob) => {
+      ob.x -= speedRef.current;
+
+      const obLeft = ob.x;
+      const obRight = ob.x + Obstacle_width;
+      const obTop
+    })
   })
 
 
