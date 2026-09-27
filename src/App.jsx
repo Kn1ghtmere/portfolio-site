@@ -10,6 +10,7 @@ import Navbar from "./sections/Navbar";
 import Contact from "./sections/Contact"
 import Footer from "./components/Footer";
 import Projects from "./sections/Projects";
+import Welcometext from "./components/Welcometext";
 
 function PlaceholderBlock({ label }) {
   return (
@@ -18,6 +19,7 @@ function PlaceholderBlock({ label }) {
     </div>
   );
 }
+
 function HorizontalPortfolio() {
   const containerRef = useRef(null);
   const trackRef = useRef(null);
@@ -26,10 +28,13 @@ function HorizontalPortfolio() {
   const groundRef = useRef(null);
   const facingSetterRef = useRef(null);
   const hintRef = useRef(null);
+  const secondHintRef = useRef(null);
   const navRef = useRef(null);
   const scrollApiRef = useRef(null);
+  const thirdhintRef = useRef(null)
 
-  useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRef, navRef, scrollApiRef });
+
+  useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRefs:[hintRef, secondHintRef, thirdhintRef], navRef, scrollApiRef });
 
   return (
     <>
@@ -37,8 +42,11 @@ function HorizontalPortfolio() {
       <Dino ref={dinoRef} frameSetterRef={frameSetterRef} facingSetterRef={facingSetterRef}/>
       <Ground ref={groundRef} />
       <ScrollHint ref={hintRef} />
+      <Welcometext ref={secondHintRef}/>
+
       <section ref={containerRef} className="h-screen overflow-hidden relative">
         <div ref={trackRef} className="flex h-full will-change-transform">
+         <Themehint ref={thirdhintRef}/>
          <PlaceholderBlock/>
          <Home />
          <Projects/>

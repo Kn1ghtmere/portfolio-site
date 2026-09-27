@@ -16,7 +16,7 @@ const SPACE_SCROLL_VALUE = 30;
 const SPACE_SCROLL_DURATION = 1.5; 
 const NAV_DROP_DURATION = 1.2;
 
-export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRef, navRef, scrollApiRef}) {
+export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRefs, navRef, scrollApiRef}) {
     useGSAP(() => {
         const container = containerRef.current;
         const track = trackRef.current;
@@ -36,12 +36,15 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
         const hideHint = () => {
             if(hintHidden) return;
             hintHidden = true;
-            const hint = hintRef?.current;
-            if (hint) {
-                hint.style.opacity = "0";
-                hint.style.pointerEvents = "none";
+            (hintRefs ?? []).forEach((ref) => {
+        
+            const el = ref?.current;
+            if (el) {
+                el.style.opacity = "0";
+                el.style.pointerEvents = "none";
             }
-        };
+        });
+    };
 
         const scrollToSection = (index) => {
             const numSections = track.children.length;
