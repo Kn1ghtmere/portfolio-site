@@ -27,12 +27,13 @@ function HorizontalPortfolio() {
   const facingSetterRef = useRef(null);
   const hintRef = useRef(null);
   const navRef = useRef(null);
+  const scrollApiRef = useRef(null);
 
-  useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRef, navRef });
+  useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRef, navRef, scrollApiRef });
 
   return (
     <>
-       <Navbar ref={navRef}/>
+       <Navbar ref={navRef} scrollApiRef={scrollApiRef}/>
       <Dino ref={dinoRef} frameSetterRef={frameSetterRef} facingSetterRef={facingSetterRef}/>
       <Ground ref={groundRef} />
       <ScrollHint ref={hintRef} />

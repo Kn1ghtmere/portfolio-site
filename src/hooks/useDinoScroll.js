@@ -16,7 +16,7 @@ const SPACE_SCROLL_VALUE = 30;
 const SPACE_SCROLL_DURATION = 1.5; 
 const NAV_DROP_DURATION = 1.2;
 
-export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRef, navRef }) {
+export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRef, navRef, scrollApiRef}) {
     useGSAP(() => {
         const container = containerRef.current;
         const track = trackRef.current;
@@ -42,6 +42,22 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
                 hint.style.pointerEvents = "none";
             }
         };
+
+        const scrollToSection = (index) => {
+            const numSections = track.children.length;
+            const steps = Math.max(numSections - 1 , 1);
+            const targetProgress = gsap.utils.clamp(0,1, index / steps);
+            const targetScroll = st.start + targetProgress * (st.end - st.start);
+            hideHint();
+            lenis.scrollTo(targetScroll, {
+                duration: 1.2,
+                easing: (t) => 1 - Math.pow(1 - t, 3),
+            });
+        };
+        
+          if (scrollApiRef) {
+            scrollApiRef.current = {scrollToSection};
+          }
 
         const lenis = new Lenis({
             duration: 1.1,

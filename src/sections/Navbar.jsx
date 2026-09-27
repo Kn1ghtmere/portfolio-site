@@ -1,19 +1,16 @@
 import { forwardRef, useState } from "react";
 
+const SECTION_INDEX = {
+  about: 1,
+  work: 2,
+  contact: 3,
+};
 
-
-function NavLink({ href, children, isActive, onClick }) {
-
-  
-
-  const handleClick = (e) => {
-    onClick?.(e);
-  };
+function NavLink({ children, isActive, onClick }) {
 
   return (
-    <a
-      href={href}
-      onClick={handleClick}
+    <button
+      onClick={onClick}
       className={`relative font-pixel text-[22px] flex items-center transform transition duration-200 hover:translate-y-2 active:translate-y-1
         ${isActive ? "text-dino-text opacity-100" : "text-dino-text opacity-60"}`}
     >
@@ -22,11 +19,11 @@ function NavLink({ href, children, isActive, onClick }) {
       {isActive && (
         <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-dino-text" />
       )}
-    </a>
+    </button>
   );
 }
 
-const Navbar = forwardRef(function Navbar(_, ref) {
+const Navbar = forwardRef(function Navbar({scrollApiRef}, ref) {
   const [active, setActive] = useState("about");
 
   const links = [
@@ -34,6 +31,11 @@ const Navbar = forwardRef(function Navbar(_, ref) {
     { id: "work", label: "work." },
     { id: "contact", label: "contact." },
   ];
+
+  const handleNavClick = (id) => {
+    setActive(id);
+    scrollApiRef?.current?.scrollToSection(SECTION_INDEX[id]);
+  };
 
   return (
     <nav ref={ref} className="bg-backgroundlight dark:bg-backgrounddark h-auto fixed top-0 inset-x-0 z-50 text-foregroundlight dark:text-subtextdark font-pixel top-0">
@@ -48,9 +50,8 @@ const Navbar = forwardRef(function Navbar(_, ref) {
           {links.map((link) => (
             <div key={link.id}>
               <NavLink
-                href={`#${link.id}`}
                 isActive={active === link.id}
-                onClick={() => setActive(link.id)}
+                onClick={() => handleNavClick(link.id)}
               >
                 {link.label}
               </NavLink>
