@@ -36,4 +36,5 @@ export default function CursorTrial(){
         return () => window.removeEventListener("mousemove", onMouseMove);
 
     }, [])
+    return null;
 }
