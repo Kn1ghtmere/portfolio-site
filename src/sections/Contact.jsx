@@ -3,10 +3,6 @@ import emailjs from "@emailjs/browser";
 import { BsGithub, BsInstagram } from "react-icons/bs";
 import { FaDiscord } from "react-icons/fa";
 import { SiChessdotcom } from "react-icons/si";
-import cactus from "../assets/cactus.png";
-import threeCactus from "../assets/3cactus.png";
-import chromedino from "../assets/chromedino.png";
-import dragon from "../assets/dragon.png";
 
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -69,12 +65,7 @@ function Contact() {
         }
       `}</style>
 
-      <img
-        src={dragon}
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none select-none absolute -right-10 -top-10 w-48 opacity-[0.07] rotate-12"
-      />
+
 
       <div className="relative z-10 flex flex-col justify-start p-2 max-w-2xl mx-auto w-full">
         <h1 className="text-textlight dark:text-white text-2xl font-pixel hover:drop-shadow-[0_0_10px_rgba(0,0,0,0.3)] transition transform duration-300 decoration-2 underline-offset-4">

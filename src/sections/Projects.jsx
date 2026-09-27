@@ -25,7 +25,7 @@ const projects = [
 function Projects() {
   return (
     <section
-      className="relative w-screen h-screen shrink-0 bg-backgroundlight dark:bg-backgrounddark flex flex-col justify-center py-6 px-6 overflow-hidden"
+      className="relative w-screen min-h-screen md:h-screen shrink-0 bg-backgroundlight dark:bg-backgrounddark flex flex-col justify-center py-4 px-3 sm:py-6 sm:px-6 overflow-hidden"
       id="work"
     >
       <style>{`
@@ -38,11 +38,11 @@ function Projects() {
      
 
       <div className="relative z-10 flex flex-col justify-start p-2 max-w-4xl mx-auto w-full">
-        <h1 className="text-textlight dark:text-white text-2xl font-pixel text-center hover:drop-shadow-[0_0_10px_rgba(0,0,0,0.3)] transition transform duration-300 decoration-2 underline-offset-4 mb-15">
+        <h1 className="text-textlight dark:text-white text-lg sm:text-2xl font-pixel text-center hover:drop-shadow-[0_0_10px_rgba(0,0,0,0.3)] transition transform duration-300 decoration-2 underline-offset-4 mb-8 sm:mb-15">
           Stuff i made:
         </h1>
 
-        <div className="py-3 flex flex-wrap gap-6 justify-center">
+        <div className="py-3 flex flex-wrap gap-4 sm:gap-6 justify-center">
           {projects.map((project) => (
             <div
               key={project.id}
@@ -53,7 +53,7 @@ function Projects() {
                 style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}
               />
 
-              <div className="flex items-center justify-between gap-3 px-5 py-3 border-b-2 border-dashed border-gray-400">
+              <div className="flex items-center justify-between gap-3 px-4 py-2 sm:px-5 sm:py-3 border-b-2 border-dashed border-gray-400">
                 <div className="flex flex-col font-mono">
                   <span className="text-xs uppercase tracking-widest text-gray-500">
                     Project
@@ -64,21 +64,21 @@ function Projects() {
               </div>
 
               {project.screenshot && (
-                <div className="px-5 py-3 border-b-2 border-dashed border-gray-400">
+                <div className="px-4 py-2 sm:px-5 sm:py-3 border-b-2 border-dashed border-gray-400">
                   <img
                     src={project.screenshot}
                     alt={project.name}
-                    className="rounded-md w-full h-48 object-cover border-2 border-dino-text shadow-[0_0_10px_rgba(0,0,0,0.3)]"
+                    className="rounded-md w-full h-40 sm:h-48 object-cover border-2 border-dino-text shadow-[0_0_10px_rgba(0,0,0,0.3)]"
                   />
                 </div>
               )}
 
-              <div className="flex items-center justify-between gap-3 px-5 py-3">
+              <div className="flex items-center justify-between gap-3 px-4 py-2 sm:px-5 sm:py-3">
                 <p className="font-retro text-lg text-black">{project.line}</p>
               
               </div>
               
-              <div className="flex items-center gap-4 px-5 py-3 bg-[#EFEDE7] border-t-2 border-dashed border-gray-400 font-retro text-base">
+              <div className="flex items-center gap-4 px-4 py-2 sm:px-5 sm:py-3 bg-[#EFEDE7] border-t-2 border-dashed border-gray-400 font-retro text-base">
                 <a
                   href={project.github}
                   target="_blank"
@@ -103,7 +103,7 @@ function Projects() {
           ))}
         </div>
       </div>
-              <div className="flex justify-center mt-6">
+              <div className="flex justify-center mt-4 sm:mt-6">
             <Thirdproject title="more">
               umm.. ur looking at it
             </Thirdproject>
