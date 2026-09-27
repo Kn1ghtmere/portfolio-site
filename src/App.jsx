@@ -6,6 +6,7 @@ import Ground from "./components/ground";
 import ScrollHint from "./components/ScrollHint"
 import Home from "./sections/Home";
 import { useDinoScroll } from "./hooks/useDinoScroll";
+import {useIsMobile} from "./hooks/useIsMobile";
 import Navbar from "./sections/Navbar";
 import Contact from "./sections/Contact"
 import Footer from "./components/Footer";
@@ -59,10 +60,24 @@ function HorizontalPortfolio() {
   );
 }
 
+function VerticalPortfolio() {
+  return (
+    <>
+    <Navbar mobile/>
+    <Home />
+    <Projects />
+    <Contact/>
+    <Ground static/>
+    <Footer/>
+    </>
+  );
+}
+
 export default function App() {
+  const isMobile = useIsMobile();
   return (
     <ThemeProvider>
-      <HorizontalPortfolio />
+      {isMobile ? <VerticalPortfolio /> : <HorizontalPortfolio/>}
     </ThemeProvider>
   );
 }

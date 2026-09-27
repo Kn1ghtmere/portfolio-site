@@ -23,7 +23,7 @@ function NavLink({ children, isActive, onClick }) {
   );
 }
 
-const Navbar = forwardRef(function Navbar({scrollApiRef}, ref) {
+const Navbar = forwardRef(function Navbar({scrollApiRef, mobile=false}, ref) {
   const [active, setActive] = useState("about");
 
   const links = [
@@ -34,14 +34,18 @@ const Navbar = forwardRef(function Navbar({scrollApiRef}, ref) {
 
   const handleNavClick = (id) => {
     setActive(id);
+    if (mobile) {
+      document.getElementById(SECTION_ID[id])?.scrollToView({ behavior: "smooth"});
+    } else {
     scrollApiRef?.current?.scrollToSection(SECTION_INDEX[id]);
+    }
   };
 
   return (
     <nav ref={ref} className="bg-backgroundlight dark:bg-backgrounddark h-auto fixed top-0 inset-x-0 z-50 text-foregroundlight dark:text-subtextdark font-pixel top-0">
       <div className="flex items-center justify-between px-8 py-9">
         <div className="flex items-center justify-center justify-end">
-         <a href="#home" className="text-[26px] font-bold text-subtextlight dark:text-white transition transform duration-200 hover:translate-y-1 active:translate-y-0.5 cursor-pointer">
+         <a className="text-[26px] font-bold text-subtextlight dark:text-white transition transform duration-200 hover:translate-y-1 active:translate-y-0.5 cursor-pointer">
             Kn1ghtmere
           </a>
         </div>

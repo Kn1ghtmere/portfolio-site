@@ -15,7 +15,7 @@ const SCROLL_MATCH = 0.002;
 const SPACE_SCROLL_VALUE = 30;
 const SPACE_SCROLL_DURATION = 1.5; 
 const NAV_DROP_DURATION = 1.2;
-const HINT_HIDE_DELAY = 500;
+const HINT_HIDE_DELAY = 350;
 
 export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRefs, navRef, scrollApiRef}) {
     useGSAP(() => {
