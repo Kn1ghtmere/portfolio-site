@@ -34,6 +34,7 @@ export default function Footer() {
           <span>Made by Kn1ghtmere &amp; Subhan</span>
           <span className="hidden sm:inline">•</span>
           <span>© {new Date().getFullYear()}</span>
+          <span className="block sm:hidden md:hidden"> better on big Screens</span>
         </div>
       </div>
     </footer>
