@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger, Draggable);
 
 const RUN_FRACTION = 0.1;
 const SETTLE_END_FRACTION = 0.2;
-const STEP_PX = 35;
+const STEP_PX = 30;
 const DRAG_MULTIPLIER = 3.1;
 const DIRECTION_LIMIT = 0.012;
 const SCROLL_MATCH = 0.002;
@@ -47,7 +47,7 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
             duration: 1.1,
             lerp: 3,
             smoothWheel: true,
-            wheelMultiplier: 1.3,
+            wheelMultiplier: 1.6,
             touchMultiplier: 1.5,
         }); 
         lenis.on("scroll", ScrollTrigger.update);
