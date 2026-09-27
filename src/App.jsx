@@ -7,6 +7,10 @@ import ScrollHint from "./components/ScrollHint"
 import Home from "./sections/Home";
 import { useDinoScroll } from "./hooks/useDinoScroll";
 import {useIsMobile} from "./hooks/useIsMobile";
+import Notfound from "./components/404";
+import { BrowserRouter } from "react-router-dom";
+import { Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Navbar from "./sections/Navbar";
 import Contact from "./sections/Contact"
 import Footer from "./components/Footer";
@@ -77,7 +81,13 @@ export default function App() {
   const isMobile = useIsMobile();
   return (
     <ThemeProvider>
-      {isMobile ? <VerticalPortfolio /> : <HorizontalPortfolio/>}
+      
+       <BrowserRouter>
+        <Routes>
+          <Route path="/" element={isMobile ? <VerticalPortfolio /> : <HorizontalPortfolio/>}/>
+          <Route path="*" element={<Notfound />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
