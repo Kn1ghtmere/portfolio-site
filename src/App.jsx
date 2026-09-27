@@ -37,12 +37,13 @@ function HorizontalPortfolio() {
       <ScrollHint ref={hintRef} />
       <section ref={containerRef} className="h-screen overflow-hidden relative">
         <div ref={trackRef} className="flex h-full will-change-transform">
-         <PlaceholderBlock label="" />
+         <PlaceholderBlock/>
          <Home />
          <PlaceholderBlock label="work/projects" />
          <Contact />
         </div>
       </section>
+      <Ground static/>
       <Footer/>
     </>
   );

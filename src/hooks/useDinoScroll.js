@@ -110,8 +110,12 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
                 end: () => `+=${totalScroll}`,
                 pin: true,
                 scrub: true,
+                onLeave: () => {
+                    gsap.set([ground], {autoAlpha:0});
+                },
                 onUpdate: (self) => {
                    const p = self.progress;
+                   gsap.set([ground], {autoAlpha:1});
 
                    const facingDelta = p - facingAnchorP;
                    if (Math.abs(facingDelta) > DIRECTION_LIMIT) {

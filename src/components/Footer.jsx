@@ -5,7 +5,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative w-screen bg-backgroundlight dark:bg-backgrounddark text-foregroundlight dark:text-subtextdark font-pixel px-8 py-14 border-t border-dashed">
+    <footer className="relative w-screen bg-backgroundlight dark:bg-backgrounddark text-foregroundlight dark:text-subtextdark font-pixel px-8 py-14 ">
       <div className="max-w-5xl mx-auto flex flex-col items-center gap-6 text-center">
         <a
           href="#home"
