@@ -15,6 +15,7 @@ const SCROLL_MATCH = 0.002;
 const SPACE_SCROLL_VALUE = 30;
 const SPACE_SCROLL_DURATION = 1.5; 
 const NAV_DROP_DURATION = 1.2;
+const HINT_HIDE_DELAY = 500;
 
 export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRefs, navRef, scrollApiRef}) {
     useGSAP(() => {
@@ -31,19 +32,22 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
         let facing = 1;
         let facingAnchorP = 0;
         let hintHidden = false;
+        let hideHintTimeout;
 
 
         const hideHint = () => {
             if(hintHidden) return;
             hintHidden = true;
-            (hintRefs ?? []).forEach((ref) => {
-        
-            const el = ref?.current;
-            if (el) {
+            clearTimeout(hideHintTimeout);
+            hideHintTimeout = setTimeout(() => {
+                (hintRefs ?? []).forEach((ref) => {
+                    const el = ref?.current;
+                    if (el) {
                 el.style.opacity = "0";
                 el.style.pointerEvents = "none";
             }
-        });
+                });
+            }, HINT_HIDE_DELAY);
     };
 
         const scrollToSection = (index) => {
@@ -224,6 +228,7 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
             window.removeEventListener("keydown", onKeydown);
             window.removeEventListener("wheel", onFirstScrollSignal);
             window.removeEventListener("touchstart", onFirstScrollSignal);
+            clearTimeout(hideHintTimeout);
             st?.kill();
             draggable?.kill();
             dragProxy.remove();
