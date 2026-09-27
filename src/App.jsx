@@ -1,17 +1,19 @@
-// App.jsx
 import { useRef } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import Dino from "./components/dino";
 import Ground from "./components/ground";
-import ScrollHint from "./components/ScrollHint"
+import ScrollHint from "./components/ScrollHint";
 import Home from "./sections/Home";
 import { useDinoScroll } from "./hooks/useDinoScroll";
-import Navbar from "./sections/Navbar"
-import Contact from "./sections/Contact"
+import Navbar from "./sections/Navbar";
+import Contact from "./sections/Contact";
 import Projects from "./sections/Projects";
 import Footer from "./components/footer";
 import About from "./components/About";
-
+import Notfound from "./components/404";
+import { BrowserRouter } from "react-router-dom";
+import { Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
 function PlaceholderBlock({ label }) {
   return (
     <div className="w-screen h-full flex items-center justify-center shrink-0 borkder-r border-dashed border-gray-400">
@@ -28,25 +30,36 @@ function HorizontalPortfolio() {
   const facingSetterRef = useRef(null);
   const hintRef = useRef(null);
 
-  useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRef });
-
+  useDinoScroll({
+    containerRef,
+    trackRef,
+    dinoRef,
+    groundRef,
+    frameSetterRef,
+    facingSetterRef,
+    hintRef,
+  });
 
   return (
     <>
-    <Navbar/>
-      <Dino ref={dinoRef} frameSetterRef={frameSetterRef} facingSetterRef={facingSetterRef}/>
+      <Navbar />
+      <Dino
+        ref={dinoRef}
+        frameSetterRef={frameSetterRef}
+        facingSetterRef={facingSetterRef}
+      />
       <Ground ref={groundRef} />
       <ScrollHint ref={hintRef} />
       <section ref={containerRef} className="h-screen overflow-hidden relative">
         <div ref={trackRef} className="flex h-full will-change-transform">
-         <PlaceholderBlock label="" />
-         <Home />
-         <About/>
-         <Projects />
-         <Contact />
+          <PlaceholderBlock label="" />
+          <Home />
+          <About />
+          <Projects />
+          <Contact />
         </div>
       </section>
-    <Footer/>
+      <Footer />
     </>
   );
 }
@@ -54,7 +67,12 @@ function HorizontalPortfolio() {
 export default function App() {
   return (
     <ThemeProvider>
-      <HorizontalPortfolio />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HorizontalPortfolio />} />
+          <Route path="*" element={<Notfound />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
