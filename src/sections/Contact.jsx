@@ -4,9 +4,9 @@ import { BsGithub, BsInstagram } from "react-icons/bs";
 import { FaDiscord } from "react-icons/fa";
 import { SiChessdotcom } from "react-icons/si";
 
-const SERVICE_ID = import.meta.env.EMAILJS_SERVICE_ID;
-const TEMPLATE_ID = import.meta.env.EMAILJS_TEMPLATE_ID;
-const PUBLIC_KEY = import.meta.env.EMAILJS_PUBLIC_KEY;
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const socials = [
   {
