@@ -35,17 +35,19 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
         let hintHidden = false;
         let hideHintTimeout;
 
-        const target = { x:0 , y:0 , scale:1 };
-        const current = { x:0 , y:0 , scale:1};
+        const target = { x:0 , y:0 , scale:1, trackX:0 };
+        const current = { x:0 , y:0 , scale:1, trackX:0};
         let dinoHeight = 0;
 
         const lerpTicker = () => {
             current.x += (target.x - current.x) * LERP_FACTOR;
             current.y += (target.y - current.y) * LERP_FACTOR;
             current.scale += (target.scale - current.scale)* LERP_FACTOR;
+            current.trackX += (target.trackX - current.trackX) * LERP_FACTOR;
 
             gsap.set(dino, {x: current.x, y: current.y, scale: current.scale});
             gsap.set(ground, {y: current.y + dinoHeight * current.scale});
+            gsap.set(track, {x: current.trackX});
         };
         gsap.ticker.add(lerpTicker);
 
@@ -134,8 +136,10 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
             target.x = current.x = walkerStartX;
             target.y = current.y = introY;
             target.scale = current.scale = introScale;
+            target.trackX = current.trackX = 0;
             gsap.set(dino, {x:current.x, y: current.y, scale: current.scale});
             gsap.set(ground, {y: current.y + dinoHeight * current.scale});
+            gsap.set(track, {x: current.trackX});
 
             const numSections = track.children.length;
             const steps = Math.max(numSections - 1, 1);
@@ -190,7 +194,7 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
                     const dinoY = gsap.utils.interpolate(introY, footerY, settle);
                     const dinoScale = gsap.utils.interpolate(introScale, footerScale, settle);
 
-                    gsap.set(track, { x: -totalScroll * p });
+                    target.trackX = -totalScroll * p;
 
                     target.x = dinoX;
                     target.y = dinoY;
