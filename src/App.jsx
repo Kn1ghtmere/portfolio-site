@@ -17,6 +17,8 @@ import Footer from "./components/Footer";
 import Projects from "./sections/Projects";
 import Welcometext from "./components/Welcometext";
 import Themehint from "./components/Themehint"
+import CursorTrail from "./components/CursorTrail";
+
 function PlaceholderBlock({ label }) {
   return (
     <div className="w-screen h-full flex items-center justify-center shrink-0 bg-backgroundlight dark:bg-backgrounddark">
@@ -49,7 +51,6 @@ function HorizontalPortfolio() {
       <ScrollHint ref={hintRef} />
       <Welcometext ref={secondHintRef}/>
       <Themehint ref={thirdhintRef}/>
-
       <section ref={containerRef} className="h-screen overflow-hidden relative">
         <div ref={trackRef} className="flex h-full will-change-transform">
          <PlaceholderBlock/>
@@ -81,6 +82,7 @@ export default function App() {
   const isMobile = useIsMobile();
   return (
     <ThemeProvider>
+      <CursorTrail/>
       
        <BrowserRouter>
         <Routes>
