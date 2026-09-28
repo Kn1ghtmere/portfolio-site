@@ -16,6 +16,7 @@ const SPACE_SCROLL_VALUE = 30;
 const SPACE_SCROLL_DURATION = 1.5; 
 const NAV_DROP_DURATION = 1.2;
 const HINT_HIDE_DELAY = 350;
+const LERP_FACTOR = 0.2 // LARP :sob dats wat u do subhan
 
 export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, frameSetterRef, facingSetterRef, hintRefs, navRef, scrollApiRef}) {
     useGSAP(() => {
@@ -33,6 +34,20 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
         let facingAnchorP = 0;
         let hintHidden = false;
         let hideHintTimeout;
+
+        const target = { x:0 , y:0 , scale:1 };
+        const current = { x:0 , y:0 , scale:1};
+        let dinoHeight = 0;
+
+        const lerpTicker = () => {
+            current.x += (target.x - current.x) * LERP_FACTOR;
+            current.y += (target.y - current.y) * LERP_FACTOR;
+            current.scale += (target.scale - current.scale)* LERP_FACTOR;
+
+            gsap.set(dino, {x: current.x, y: current.y, scale: current.scale});
+            gsap.set(ground, {y: current.y + dinoHeight * current.scale});
+        };
+        gsap.ticker.add(lerpTicker);
 
 
         const hideHint = () => {
@@ -105,7 +120,7 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
         const build = () => {
             const totalScroll = track.scrollWidth - window.innerWidth;
             const dinoWidth = dino.offsetWidth;
-            const dinoHeight = dino.offsetHeight;
+            dinoHeight = dino.offsetHeight;
             const margin = 24;
 
             
@@ -115,6 +130,12 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
             const footerScale = 1;
             const walkerStartX = margin;
             const walkerEndX = window.innerWidth - dinoWidth - margin;
+
+            target.x = current.x = walkerStartX;
+            target.y = current.y = introY;
+            target.scale = current.scale = introScale;
+            gsap.set(dino, {x:current.x, y: current.y, scale: current.scale});
+            gsap.set(ground, {y: current.y + dinoHeight * current.scale});
 
             const numSections = track.children.length;
             const steps = Math.max(numSections - 1, 1);
@@ -171,14 +192,10 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
 
                     gsap.set(track, { x: -totalScroll * p });
 
-                    gsap.set(dino, {
-                        x: dinoX,
-                        y: dinoY,
-                        scale: dinoScale,
-                    });
-
-                    gsap.set(ground, {
-                        y: dinoY + dinoHeight * dinoScale });
+                    target.x = dinoX;
+                    target.y = dinoY;
+                    target.scale = dinoScale;
+                    
 
                     if(nav) {
                         const navProgress = gsap.utils.clamp(
@@ -229,6 +246,7 @@ export function useDinoScroll({ containerRef, trackRef, dinoRef, groundRef, fram
             window.removeEventListener("wheel", onFirstScrollSignal);
             window.removeEventListener("touchstart", onFirstScrollSignal);
             clearTimeout(hideHintTimeout);
+            gsap.ticker.remove(lerpTicker);
             st?.kill();
             draggable?.kill();
             dragProxy.remove();
