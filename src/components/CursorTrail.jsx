@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 const SPAWN_INTERVAL_MS = 40;
-const PARTICLE_LIFETIME_MS = 500;
+const PARTICLE_LIFETIME_MS = 400;
 const PARTICLE_SIZE = 4;
 
 export default function CursorTrial() {
@@ -19,10 +19,10 @@ export default function CursorTrial() {
       const tx = Math.cos(angle) * distance;
       const ty = Math.sin(angle) * distance;
 
-      particle.style.left = ${e.clientX}px;
-      particle.style.top = ${e.clientY}px;
-      particle.style.setProperty("--tx", ${tx}px);
-      particle.style.setProperty("--ty", ${ty}px);
+      particle.style.left = `${e.clientX}px`;
+      particle.style.top = `${e.clientY}px`;
+      particle.style.setProperty("--tx", `${tx}px`);
+      particle.style.setProperty("--ty", `${ty}px`);
 
       document.body.appendChild(particle);
       setTimeout(() => particle.remove(), PARTICLE_LIFETIME_MS);
