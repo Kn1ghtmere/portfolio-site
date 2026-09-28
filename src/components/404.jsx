@@ -2,6 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 
+import ThemeToggle from "../components/ThemeToggle";
+
+
+
 import rightLegLight from "../assets/DINO/Chrome_T-Rex_Right_Run.png";
 import rightLegDark from "../assets/DINO/Chrome_T-Rex_Right_Run_forblackmode.png";
 import leftLegLight from "../assets/DINO/Chrome_T-Rex_Left_Run.png";
@@ -161,15 +165,16 @@ export default function Notfound() {
   }, [running, theme]);
   return (
     <>
-      <div className="relative w-screen h-screen flex flex-col items-center justify-center bg-backgroundlight px-6 overflow-hidden">
+      <div className="relative w-screen h-screen flex flex-col items-center justify-center dark:bg-backgrounddark bg-backgroundlight px-6 overflow-hidden">
+        <div className="absolute top-6 right-6"> <ThemeToggle/> </div>
         <h1 className="font-pixel text-6xl text-dino-text mb-2">404</h1>
-        <p className="font-retro text-3xl text-textlight mb-6">
+        <p className="font-retro text-3xl text-textlight dark:text-textdark mb-6">
           {" "}
           oh i think ur off the page
         </p>
         <div
           ref={playAreaRef}
-          className="relative w-full max-w-2xl h-40 border-2 border-dashed border-gray-400 rounded-lg overflow-hidden bg-backgroundlight "
+          className="relative w-full max-w-2xl h-40 border-2 border-dashed border-gray-400 rounded-lg overflow-hidden bg-backgroundlight dark:bg-backgrounddark "
           onClick={() => (!running && !gameOver ? startGame() : jump())}
         >
           <div
@@ -206,7 +211,7 @@ export default function Notfound() {
           ))}
 
           {!running && !gameOver && (
-            <div className="absolute inset-0 flex items-center justify-center font-pixel text-dino-text bg-backgroundlight/70">
+            <div className="absolute inset-0 flex items-center justify-center font-pixel text-dino-text dark:bg-backgrounddark/70 bg-backgroundlight/70">
               click or press space to start :3{" "}
             </div>
           )}
@@ -225,7 +230,7 @@ export default function Notfound() {
 
         <button
           onClick={() => navigate("/")}
-          className="mt-6 font-pixel text-base bg-subtextlight text-backgroundlight px-6 py-3 rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] transition transform duration-150 hover:-translate-y-1 active:translate-y-0 active:shadow-none"
+          className="mt-6 font-pixel text-base bg-subtextlight dark:bg-subtextdark dark:text-backgrounddark text-backgroundlight px-6 py-3 rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] transition transform duration-150 hover:-translate-y-1 active:translate-y-0 active:shadow-none"
         >
           back home(joji ref)
         </button>

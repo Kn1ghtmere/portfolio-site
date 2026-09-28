@@ -14,6 +14,8 @@ import Notfound from "./components/404";
 import { BrowserRouter } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
+import CursorTrial from "./components/CursorTrial";
+
 function PlaceholderBlock({ label }) {
   return (
     <div className="w-screen h-full flex items-center justify-center shrink-0 borkder-r border-dashed border-gray-400">
@@ -67,6 +69,8 @@ function HorizontalPortfolio() {
 export default function App() {
   return (
     <ThemeProvider>
+      <CursorTrial />
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HorizontalPortfolio />} />

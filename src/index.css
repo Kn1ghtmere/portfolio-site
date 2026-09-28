@@ -95,3 +95,17 @@ body {
   background-color: var(--color-backgrounddark);
   color: var(--color-foregrounddark);
 }
+
+.pixel-trial-particle{
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-foregroundlight);
+  pointer-events: none;
+  z-index: 9999;
+  animation: pixel-burst 0.5s ease-out forwards;
+  image-rendering: pixelated;
+}
+.dark .pixel-trial-particle{
+  background-color: var(--color-foregrounddark);
+}
